@@ -3,6 +3,9 @@ package nl.tomkemper.boardgamecollections;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Boardgame {
 
@@ -13,9 +16,17 @@ public class Boardgame {
 
     private int rating;
 
-
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Author author;
+
+    public List<Edition> getEditions() {
+        return editions;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Edition> editions = new ArrayList<>();
+
+
 
     protected Boardgame() {
     }

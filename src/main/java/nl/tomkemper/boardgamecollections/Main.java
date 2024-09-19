@@ -39,7 +39,21 @@ public class Main {
                 Transaction tran = session.beginTransaction();
 
                 Boardgame domaine = session.get(Boardgame.class, domaineId);
-                session.remove(domaine);
+
+                domaine.getEditions().add(new Edition("First Edition", 1992));
+                domaine.getEditions().add(new Edition("Second Edition", 2003));
+
+                tran.commit();
+
+            }
+
+            try (Session session = factory.openSession()) {
+                Transaction tran = session.beginTransaction();
+
+                Boardgame domaine = session.get(Boardgame.class, domaineId);
+
+                Edition ed = domaine.getEditions().get(0);
+                domaine.getEditions().remove(ed);
 
                 tran.commit();
 

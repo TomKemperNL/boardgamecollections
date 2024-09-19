@@ -22,5 +22,6 @@
 
         <!-- Mention annotated classes or mapping files -->
         <mapping class="nl.tomkemper.boardgamecollections.Boardgame"/>
+        <mapping class="nl.tomkemper.boardgamecollections.Author"/>
     </session-factory>
 </hibernate-configuration>

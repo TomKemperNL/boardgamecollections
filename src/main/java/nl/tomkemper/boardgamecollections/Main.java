@@ -33,6 +33,17 @@ public class Main {
                 domaineId = domaine.getId();
                 tran.commit();
             }
+
+
+            try (Session session = factory.openSession()) {
+                Transaction tran = session.beginTransaction();
+
+                Boardgame domaine = session.get(Boardgame.class, domaineId);
+                session.remove(domaine);
+
+                tran.commit();
+
+            }
         }
     }
 }
